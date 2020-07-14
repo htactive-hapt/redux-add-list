@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import { connect } from 'react-redux';
 
-function App() {
+import CakeContainer from './components/CakeContainer'
+import HooksCakeContainer from './components/HooksCakeContainer'
+import IceCreamContainer from './components/IceCreamContainer'
+import NewCakeContainer from './components/NewCakeContainer'
+import ItemContainer from './components/ItemContainer'
+// import UserContainer from './components/UserContainer'
+
+function App ({cake, iceCream}) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <div className='App'>
+        {/* <UserContainer /> */}
+        <ItemContainer cake={cake} />
+        <ItemContainer />
+        <NewCakeContainer />
+        <CakeContainer />
+        <HooksCakeContainer />
+        <IceCreamContainer />
+      </div>
+  )
 }
 
-export default App;
+const mapStateToProps = state => ({
+  cake: state.cake,
+  iceCream: state.iceCream,
+});
+
+export default connect(mapStateToProps)(App);
